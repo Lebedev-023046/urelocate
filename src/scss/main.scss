@@ -6,20 +6,32 @@
 @import "base/typography";
 @import "base/utilities";
 
-@import "pages/home";
-@import "pages/index";
+@import "pages/common";
+@import "pages/blog";
+@import "pages/blog-article";
+@import "pages/userver";
+@import "pages/udocs";
+@import "pages/payoneer";
+@import "pages/unblock";
+@import "pages/services";
 
 @import "layout/header";
 @import "layout/navigation";
 @import "layout/footer";
 
 @import "components/common/chip-view";
+@import "components/common/answer-form";
 @import "components/common/faq";
+@import "components/common/service-hero";
+@import "components/common/blue-section";
+@import "components/common/transparent-section";
+@import "components/common/black-section";
+@import "components/common/background-section";
+@import "components/common/tariffs-section";
 
 @import "components/home/instruments";
 @import "components/home/services";
 @import "components/home/feedback";
-@import "components/home/purchase";
 @import "components/home/instructions";
 @import "components/home/statistics";
 @import "components/home/courses";
