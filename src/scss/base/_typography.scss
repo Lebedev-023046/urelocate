@@ -1,7 +1,7 @@
-// @font-face {
-//   font-family: "ME-regular";
-//   src: url("./../assets/fonts/ME-regular.otf");
-// }
+@font-face {
+  font-family: "Mont-heavy";
+  src: url("../assets/fonts/Mont-Heavy.woff2") format("woff");
+}
 
 body {
   font-family: "Montserrat", sans-serif;
@@ -34,7 +34,7 @@ body {
   font-weight: 650;
 
   @include respond(phone) {
-    font-weight: 1000;
+    font-family: Mont-heavy;
     font-size: 4rem;
     text-transform: uppercase;
   }

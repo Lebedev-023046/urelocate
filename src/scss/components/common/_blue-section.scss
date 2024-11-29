@@ -33,6 +33,7 @@
 
     & > img {
       max-width: 10rem;
+      object-fit: contain;
 
       @include respond(tab-port) {
         max-width: 7rem;
