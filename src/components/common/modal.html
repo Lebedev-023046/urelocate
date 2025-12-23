@@ -1,0 +1,67 @@
+<div class="modal" aria-hidden="true">
+	<!-- overlay -->
+	<div class="modal__overlay" data-modal-close></div>
+
+	<!-- modal window -->
+	<div class="modal__container modal-offer" role="dialog" aria-modal="true">
+
+
+		<div class="modal__content modal-offer__content">
+			<!-- header -->
+			<div class="modal-offer__header u-margin-bottom-common">
+				<h2 class="modal-offer__title heading-primary">
+					ДОСТУП К ОБУЧЕНИЮ И<br />
+					ЗАКРЫТОМУ КОМЬЮНИТИ ПО ЗА&nbsp;1$
+				</h2>
+				<button class="modal__close" type="button" data-modal-close aria-label="Close modal">
+					<img decoding="sync" fetchpriority="high" class="modal__close-icon"
+						src="./assets/img/dist/icons/close-white.svg" alt="logo" />
+				</button>
+			</div>
+
+			<!-- body -->
+			<div class="modal-offer__body">
+				<!-- left column -->
+				<div class="modal-offer__visual">
+					<picture class="picture modal-offer__image">
+						<source type="image/webp" srcset="./assets/img/dist/tree.webp" />
+						<img src="./assets/img/dist/tree.png" alt="tg-icon" />
+					</picture>
+
+					<div class="modal-offer__timer">
+						<span class="modal-offer__timer-label-top">До&nbsp;конца<br>акции:</span>
+						<div class="modal-offer__timer-content">
+
+							<!--=include common/timer.html -->
+						</div>
+					</div>
+
+
+				</div>
+
+				<!-- right column -->
+				<div class="modal-offer__form-wrapper">
+					<p class="modal-offer__subtitle">
+						Успей оставить заявку<br />
+						и получи подробную консультацию<br />
+						и доступ к обучению
+					</p>
+
+					<form id='new-year-sale-form' class="modal-offer__form">
+						<input id='sale-form-name' type="text" name="name" placeholder="Имя" required class="modal-offer__input" />
+
+						<input id='sale-form-telegram' type="text" name="telegram" placeholder="Telegram" required
+							class="modal-offer__input" />
+
+						<input id='sale-form-email' type="email" name="email" placeholder="E-mail" required
+							class="modal-offer__input" />
+
+						<button type="submit" class="modal-offer__submit">
+							Отправить
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -12,6 +12,12 @@
     }
   }
 
+  @if $breakpoint == modal-tab-port {
+    @media (max-width: 50em) {
+      @content;
+    }
+  }
+
   @if $breakpoint == tab-port {
     @media (max-width: 56.25em) {
       @content;
