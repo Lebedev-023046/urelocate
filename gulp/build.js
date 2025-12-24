@@ -10,7 +10,7 @@ function building() {
     [
       "./src/assets/img/dist/**/*.*",
       "./src/assets/pdf/*.*",
-      // "./src/assets/fonts/*.*",
+      "./src/assets/fonts/*.*",
       // "./src/assets/json/*.json",
       "./src/css/*.css",
       "./src/js/*.js",

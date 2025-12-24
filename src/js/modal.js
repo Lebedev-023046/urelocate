@@ -1,0 +1,127 @@
+(function () {
+  const modal = document.querySelector(".modal");
+  if (!modal) return;
+
+  const MODAL_SHOWN_KEY = "homeModalShown";
+
+  console.log("HELLO");
+
+  const isHomePage =
+    window.location.pathname === "/" ||
+    window.location.pathname.endsWith("index.html");
+
+  const openModal = () => {
+    modal.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    document.body.style.overflow = "";
+    localStorage.setItem(MODAL_SHOWN_KEY, "true");
+  };
+
+  modal
+    .querySelectorAll("[data-modal-close]")
+    .forEach((el) => el.addEventListener("click", closeModal));
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+
+  const banner = document.querySelector("[data-open-modal]");
+  if (banner) {
+    banner.addEventListener("click", openModal);
+  }
+
+  // if (isHomePage && !localStorage.getItem(MODAL_SHOWN_KEY)) {
+  //   setTimeout(openModal, 600);
+  // }
+  if (isHomePage) {
+    setTimeout(openModal, 600);
+  }
+
+  // FORM SUBMITTING
+
+  fetch("./config/config.json")
+    .then((response) => {
+      if (!response.ok) throw new Error("Failed to load config file.");
+      return response.json();
+    })
+    .then(initFormSubmission)
+    .catch((error) => console.error("Error loading config:", error));
+
+  function initFormSubmission(config) {
+    const TOKEN = config?.privateBotToken ?? "TOKEN";
+    const CHAT_ID = config?.privateChatId ?? "CHAT_ID";
+    const form = document.getElementById("new-year-sale-form");
+
+    if (!TOKEN || !CHAT_ID) {
+      console.error("Токен либо чат айди недоступны.");
+      return;
+    }
+
+    form.addEventListener("submit", (event) =>
+      handleFormSubmit(event, TOKEN, CHAT_ID)
+    );
+  }
+
+  function handleFormSubmit(event, token, chatId) {
+    event.preventDefault();
+
+    const name = document.getElementById("sale-form-name").value.trim();
+    const telegram = document.getElementById("sale-form-telegram").value.trim();
+    const email = document.getElementById("sale-form-email").value.trim();
+
+    if (!name || !telegram || !email) {
+      alert("Пожалуйста, заполните все необходимые поля.");
+      return;
+    }
+
+    const message = createTelegramMessage(name, telegram, email);
+    sendTelegramMessage(token, chatId, message);
+  }
+
+  function createTelegramMessage(name, telegram, email, comment) {
+    return `
+    Новая заявка 📧:
+Имя: ${name}
+Telegram: @${telegram}
+Почта: ${email}
+Комментарий: NY2026
+  `;
+  }
+
+  function sendTelegramMessage(token, chatId, message) {
+    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+        parse_mode: "HTML",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) {
+          alert("Сообщение отправлено успешно!");
+          resetForm();
+        } else {
+          console.error("Error response from Telegram API:", data);
+          alert("Возникла ошибка при отправке формы.");
+        }
+      })
+      .catch((error) => {
+        console.error("Network error:", error);
+        alert("Возникла ошибка. Попробуйте снова.");
+      });
+  }
+
+  function resetForm() {
+    const form = document.getElementById("telegramForm");
+    form.reset();
+  }
+})();

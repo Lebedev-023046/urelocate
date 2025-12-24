@@ -1,0 +1,21 @@
+.ny-banner {
+  position: fixed;
+  display: inline-block;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  background: url("../assets/img/dist/snow.webp"),
+    linear-gradient(135deg, rgba(196, 22, 28, 1), rgba(229, 57, 53, 1));
+  color: $white;
+  border-radius: 3.2rem;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  & > * {
+    background: url("../assets/img/dist/snow.webp"),
+      linear-gradient(135deg, rgba(196, 22, 28, 1), rgba(229, 57, 53, 1));
+    color: $white !important;
+  }
+}
